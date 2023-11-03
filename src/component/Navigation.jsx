@@ -1,6 +1,12 @@
+import { useContext } from "react";
 import { Outlet, Link } from "react-router-dom";
+import { GalleryContext } from "../context/galleryContext";
 
 const Navigation = () => {
+
+  const context = useContext(GalleryContext)
+  console.log(context);
+
   return (
     <>
       <header className="container">
