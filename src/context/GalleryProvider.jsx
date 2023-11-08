@@ -28,11 +28,11 @@ export const GalleryProvider = ({ children }) => {
       return data;
     });
 
-    const results = await Promise.all(promisesPokemon);
+    const allPokemons = await Promise.all(promisesPokemon);
 
-    console.log(results)
-    setAllPokemons([...results, ...allPokemons]);
-    console.log([setAllPokemons])
+    
+    setAllPokemons([ ...allPokemons]);
+    console.log([...allPokemons])
     setLoading(false);
   };
 
@@ -79,6 +79,7 @@ export const GalleryProvider = ({ children }) => {
         allPokemons,
         globalPokemon,
         getPokemonById,
+        active
       }}
     >
       {children}

@@ -1,3 +1,4 @@
+import FilterBar from "../component/FilterBar";
 import PokemonList from "../component/PokemonList";
 
 const HomePage = () => {
@@ -23,6 +24,8 @@ const HomePage = () => {
         </div>
       </div>
       <PokemonList />
+
+      <FilterBar />
     </>
   );
 };
