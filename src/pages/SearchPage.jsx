@@ -4,7 +4,7 @@ import { GalleryContext } from "../context/galleryContext";
 import CardPokemon from "../component/CardPokemon";
 
 const SearchPage = () => {
-  const pokemonsRendered = useFilterAndRenderUsers();
+  const pokemonsRendered = useFilterAndRenderPokemons();
 
   return (
     <div className="container">
@@ -13,7 +13,7 @@ const SearchPage = () => {
   );
 };
 
-const useFilterAndRenderUsers = () => {
+const useFilterAndRenderPokemons = () => {
   const location = useLocation();
 
   const { allPokemons } = useContext(GalleryContext);

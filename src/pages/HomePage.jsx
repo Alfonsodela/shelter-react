@@ -1,10 +1,16 @@
+import { useContext } from "react";
 import FilterBar from "../component/FilterBar";
 import PokemonList from "../component/PokemonList";
+import { GalleryContext } from "../context/galleryContext";
 
 const HomePage = () => {
+  const { active, setActive } = useContext(GalleryContext);
   return (
     <>
-      <div className="container-filter container">
+      <div
+        className="container-filter container"
+        onClick={() => setActive(!active)}
+      >
         <div className="icon-filter">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -24,7 +30,6 @@ const HomePage = () => {
         </div>
       </div>
       <PokemonList />
-
       <FilterBar />
     </>
   );

@@ -10,8 +10,8 @@ const Navigation = () => {
   const onSearchSubmit = (e) => {
     e.preventDefault();
     navigate("/search", {
-			state: search,
-		});
+      state: search,
+    });
   };
 
   return (

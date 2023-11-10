@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { GalleryContext } from "./galleryContext";
-import { useForm } from "../hook/useForm";
+// import { useForm } from "../hook/useForm";
 
 export const GalleryProvider = ({ children }) => {
   const [allPokemons, setAllPokemons] = useState([]);
   const [globalPokemon, setGlobalPokemon] = useState([]);
   const [offSet, setOffSet] = useState(0);
 
-  const { valueSearch, onInputChange, onResetForm } = useForm({
-    valueSearch: "",
-  });
+  // const { valueSearch, onInputChange, onResetForm } = useForm({
+  //   valueSearch: "",
+  // });
 
   const [loading, setLoading] = useState(true);
   const [active, setActive] = useState(false);
@@ -30,9 +30,8 @@ export const GalleryProvider = ({ children }) => {
 
     const allPokemons = await Promise.all(promisesPokemon);
 
-    
-    setAllPokemons([ ...allPokemons]);
-    console.log([...allPokemons])
+    setAllPokemons([...allPokemons]);
+    console.log([...allPokemons]);
     setLoading(false);
   };
 
@@ -64,22 +63,70 @@ export const GalleryProvider = ({ children }) => {
 
   useEffect(() => {
     getAllPokemon();
-  }, [] );
+  }, []);
 
   // useEffect(() => {
   //   getGlobalPokemon();
   // }, []);
 
+  const [typeSelected, setTypeSelected] = useState({
+    grass: false,
+    normal: false,
+    fighting: false,
+    flying: false,
+    poison: false,
+    ground: false,
+    rock: false,
+    bug: false,
+    ghost: false,
+    steel: false,
+    fire: false,
+    water: false,
+    electric: false,
+    psychic: false,
+    ice: false,
+    dragon: false,
+    dark: false,
+    fairy: false,
+    unknow: false,
+    shadow: false,
+  });
+
+  const [filteredPokemons, setfilteredPokemons] = useState([]);
+
+  const handleCheckbox = (e) => {
+    setTypeSelected({
+      ...typeSelected,
+      [e.target.name]: e.target.checked,
+    });
+
+    if (e.target.checked) {
+      const filteredResults = allPokemons.filter((pokemon) =>
+        pokemon.types.map((type) => type.type.name).includes(e.target.name)
+      );
+
+      console.log(filteredResults)
+      setfilteredPokemons([...filteredPokemons, ...filteredResults]);
+    } 
+    // else {
+    //   const filteredResults = filteredPokemons.filter(
+    //     (pokemon) =>
+    //       !pokemon.types.map((type) => type.type.name).includes(e.target.name)
+    //   );
+    //   setfilteredPokemons([...filteredResults]);
+    // }
+  };
+
   return (
     <GalleryContext.Provider
       value={{
-        valueSearch,
-        onInputChange,
-        onResetForm,
         allPokemons,
         globalPokemon,
         getPokemonById,
-        active
+        active,
+        setActive,
+        filteredPokemons,
+        handleCheckbox,
       }}
     >
       {children}
