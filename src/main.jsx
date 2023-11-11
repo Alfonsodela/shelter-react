@@ -1,17 +1,27 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
-
-import { BrowserRouter } from "react-router-dom";
-import "./styles/index.css";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Navigator from "./component/Navigator";
+import PokemonPage from "./pages/PokemonPage";
+import SearchPage from "./pages/SearchPage";
+import { HomePage } from "./pages/HomePage";
 import PokemonProvider from "./component/provider/PokemonProvider.jsx";
-import App from "./App.jsx";
+import "./styles/index.css";
+
+const router = createBrowserRouter([
+  {
+    element: <Navigator />,
+    children: [
+      { path: "home", element: <HomePage /> },
+
+      { path: "pokemon/:id", element: <PokemonPage /> },
+
+      { path: "search", element: <SearchPage /> },
+    ],
+  },
+]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <PokemonProvider>
-        <App/>
-      </PokemonProvider>
-    </BrowserRouter>
-  </React.StrictMode>
+  <PokemonProvider>
+    <RouterProvider router={router} />
+  </PokemonProvider>
 );

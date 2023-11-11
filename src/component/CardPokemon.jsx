@@ -1,4 +1,4 @@
-const CardPokemon = (pokemon) => {
+const CardPokemon = ({pokemon}) => {
 
   return (
   <div>
