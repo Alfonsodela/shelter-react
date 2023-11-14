@@ -17,17 +17,17 @@ const useFilteredAndRenderedPokemons = () => {
   const location = useLocation();
 
   const { allPokemons } = useContext(PokemonContext);
-  console.log(allPokemons)
+  console.log(allPokemons);
 
-  const pokemonsFilterByName = allPokemons.filter((pokemon) => {
-    pokemon.name.includes(location.state.toLowerCase());
-  });
+  const pokemonsFilterByName = allPokemons.filter((pokemon) =>
+    pokemon.name.includes(location.state.toLowerCase())
+  );
 
   console.log(pokemonsFilterByName);
 
-  const pokemonsRendered = pokemonsFilterByName.map((pokemon) => {
-    <CardPokemon key={pokemon.id} pokemon={pokemon} />;
-  });
+  const pokemonsRendered = pokemonsFilterByName.map((pokemon) => (
+    <CardPokemon key={pokemon.id} pokemon={pokemon} />
+  ));
 
   return pokemonsRendered;
 };
