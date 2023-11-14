@@ -1,21 +1,20 @@
-import { Routes, Route, Navigate } from "react-router-dom";
-import Navigation from "./component/Navigation";
+import { Route, Routes } from "react-router-dom"
+import Navigation from "./component/Navigation"
+import HomePage from "./pages/HomePage"
+import SearchPage from "./pages/SearchPage"
+import DetailPage from "./pages/DetailPage"
 
-import DetailPage from "./pages/DetailPage";
-import SearchPage from "./pages/SearchPage";
-import HomePage from "./pages/HomePage";
 
-function App() {
+const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<Navigation />}>
-        <Route index element={<HomePage />} />
-        <Route path="pokemon/:id" element={<DetailPage />} />
-        <Route path="search" element={<SearchPage />} />
+      <Route path="/" element={<Navigation/>}>
+        <Route index element={<HomePage/>}/>
+        <Route path="search" element={<SearchPage/>}/>
+       <Route path="pokemon/:id" element={<DetailPage/>}/> 
       </Route>
-      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
-  );
+  )
 }
 
-export default App;
+export default App

@@ -1,6 +1,16 @@
-import { Outlet, Link } from "react-router-dom";
+import { useState } from "react";
+import { Outlet, Link, useNavigate } from "react-router-dom";
 
 const Navigation = () => {
+  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
+
+  const searchName = (e) => {
+    e.preventDefault();
+    navigate("/search", {
+      state: search,
+    });
+  };
   return (
     <>
       <header className="container">
@@ -11,7 +21,7 @@ const Navigation = () => {
           />
         </Link>
 
-        <form >
+        <form onSubmit={searchName}>
           <div className="form-group">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -31,8 +41,8 @@ const Navigation = () => {
               type="search"
               name="valueSearch"
               id=""
-              // value={valueSearch}
-              // onChange={onInputChange}
+              value={search}
+              onChange={(ev) => setSearch(ev.target.value)}
               placeholder="Buscar nombre de pokemon"
             />
           </div>
